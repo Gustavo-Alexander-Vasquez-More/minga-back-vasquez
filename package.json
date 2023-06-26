@@ -6,8 +6,12 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
+    "users": "node ./models/data/users.js",
+    "authors": "node ./models/data/authors.js",
+    "categories": "node ./models/data/categories.js"
     "users": "node ./models/data/users.js"
-  },
+
+ },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
