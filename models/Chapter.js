@@ -1,5 +1,6 @@
 import { Schema,model,Types } from 'mongoose'
 
+
 let collection = 'chapters'
 let schema = new Schema({
 manga_id:{type:Types.ObjectId,
