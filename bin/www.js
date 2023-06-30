@@ -4,7 +4,7 @@ import debug from 'debug' ;//importo el modulo debuguear
 import http from 'http'; //importo el modulo para crear servidores
 const logger= debug('minga-color-back') //se configura el debugueador
 
-let port = normalizePort(process.env.PORT || '8080');//defino el puerto donde va a funcionar nuestro servidor
+let port = normalizePort(process.env.PORT || '8000');//defino el puerto donde va a funcionar nuestro servidor
 app.set('port', port);//configurio el puerto con la letiable port definidfa anteriormente
 let server = http.createServer(app);//utilizo el modulo http para crear un servidor con las configuraciones que se realizaron en app
 // listense utiliza para escuchar un puerto y es el encargado de levantar efectivamente el servidor(empieza a funcioonar)
