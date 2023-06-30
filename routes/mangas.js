@@ -5,7 +5,6 @@ import validator from "../middlewares/validator.js"
 import mangaValidation from "../schemas/Manga/mangaVal.js"
 
 const manga_router=Router()
-//manga_router.post()
 manga_router.get('/', read)
 
 manga_router.post('/mangaC',validator(mangaValidation), create);
