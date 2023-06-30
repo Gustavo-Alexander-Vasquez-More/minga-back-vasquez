@@ -1,20 +1,20 @@
 
-import app from '../app.js'; //importo la app de back configurada
-import debug from 'debug' ;//importo el modulo debuguear
-import http from 'http'; //importo el modulo para crear servidores
-const logger= debug('minga-color-back') //se configura el debugueador
+import app from '../app.js'; 
+import debug from 'debug' ;
+import http from 'http';
+const logger= debug('minga-color-back')
 
-let port = normalizePort(process.env.PORT || '8000');//defino el puerto donde va a funcionar nuestro servidor
-app.set('port', port);//configurio el puerto con la letiable port definidfa anteriormente
-let server = http.createServer(app);//utilizo el modulo http para crear un servidor con las configuraciones que se realizaron en app
-// listense utiliza para escuchar un puerto y es el encargado de levantar efectivamente el servidor(empieza a funcioonar)
+let port = normalizePort(process.env.PORT || '8000');
+app.set('port', port);
+let server = http.createServer(app);
+
 function ready(){
   console.log('server ready on port'+port);
 }
 
 server.listen(
-  port, //primer parametrp 
-  ready //seugndo parametro callback opcional para mostrar en consola si el servidor se levanto correctamente
+  port, 
+  ready 
   );
 server.on('error', onError);
 server.on('listening', onListening);
