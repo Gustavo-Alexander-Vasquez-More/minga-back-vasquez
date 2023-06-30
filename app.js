@@ -17,6 +17,10 @@ app.use(express.json());//obliga al servidor a transformar/manejar formato json(
 app.use(express.urlencoded({ extended: false }));//obliga al servidor a acceder a consultas complejas(lee query params de una peticion)
 app.use(express.static(path.join(__dirname, 'public')));//obliga al servidor a generar una carpeta de acceso PUBLICO
 app.use(cors()) //obliga al servidor a cruzar los origrenes del front y back
+
+app.use((req, res, next)=>{
+    console.log('Time: ', new Date().getFullYear());
+});
 //ENDPOINTS
 app.use('/api', indexRouter);//obliga al servidor a usar las rutas definifas en el enrutador
 export default app;
