@@ -2,17 +2,17 @@ import Author from "../../models/Author.js"
 
 export default async(req, res)=>{
     try {
-        let all = await Author.find()      
-        if (all) {             
-            return res.status(200).json({ 
+        let all = await Author.find()       //espero la busqueda de todos los autores
+        if (all) {                          //que hago si encuentro autores?
+            return res.status(200).json({   //envío al cliente una respuesta con los datos que quiera
                 response:all,
                 success:true,
                 message:'you have requested GET /api/authors/',
                 mindhub:'the best',
                 date: new Date()
             })
-        } else {   
-            return res.status(404).json({   
+        } else {                            //que hago si NO encuentro autores
+            return res.status(404).json({   //envio al cliente OTRA respuesta con los datos que quiera
                 response:null,
                 success:false,
                 message:'not found authors',
@@ -20,9 +20,9 @@ export default async(req, res)=>{
                 date: new Date()
             })
         }
-    } catch (error) { 
-        console.log(error)                  
-        return res.status(500).json({       
+    } catch (error) {                       //que hago si no puedo INTENTAR buscar algo y salta el catch
+        console.log(error)                  //consologueo el error
+        return res.status(500).json({       //envío al cliente OTRA respuesta con los datos que quiera
             response:null,
             success:false,
             message:error.message
