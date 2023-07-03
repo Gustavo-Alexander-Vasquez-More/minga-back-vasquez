@@ -1,12 +1,12 @@
-import Manga from '../../models/Manga.js'
+import User from '../../models/User.js'
 export default async(req, res)=>{
     try {
-        let all = await Manga.find()       //espero la busqueda de todos los autores
+        let all = await User.find()       //espero la busqueda de todos los autores
         if (all) {                          //que hago si encuentro autores?
             return res.status(200).json({   //envío al cliente una respuesta con los datos que quiera
                 response:all,
                 success:true,
-                message:'you have requested GET /api/mangas/',
+                message:'you have requested GET /api/users/',
                 mindhub:'the best',
                 date: new Date()
             })
@@ -14,7 +14,7 @@ export default async(req, res)=>{
             return res.status(404).json({   //envio al cliente OTRA respuesta con los datos que quiera
                 response:null,
                 success:false,
-                message:'not found mangas',
+                message:'not found users',
                 mindhub:'the best',
                 date: new Date()
             })

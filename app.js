@@ -20,6 +20,7 @@ app.use(cors()) //obliga al servidor a cruzar los origrenes del front y back
 
 app.use((req, res, next)=>{
     console.log('Time: ', new Date().getFullYear());
+    next();
 });
 //ENDPOINTS
 app.use('/api', indexRouter);//obliga al servidor a usar las rutas definifas en el enrutador
