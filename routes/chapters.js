@@ -6,7 +6,12 @@ import validator from "../middlewares/validator.js";
 import validadorChapter from "../schemas/Manga/chapter/validadorChapter.js";
 const chapter_router=Router()
 chapter_router.get('/', read)
-//chapter_router.post('/', addCoverPhotoMiddleware, create)//
+chapter_router.post('/', addCoverPhotoMiddleware, create)//
 chapter_router.post('/chapterC',validator(validadorChapter), create);
+
+const chapter_router=Router()
+chapter_router.get('/', read)
+chapter_router.post('/', addCoverPhotoMiddleware, create)
+
 //chapter_router.delete()
 export default chapter_router
