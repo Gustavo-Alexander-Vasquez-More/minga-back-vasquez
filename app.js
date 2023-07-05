@@ -6,6 +6,10 @@ import logger from'morgan';//modulo para registrar las peticiones que se reasliz
 import { __dirname } from './utils.js';
 import cors from 'cors'//modulo para permitir origenes cruzados(puerto del back con puerto del front)
 import indexRouter from'./routes/index.js';//enrutador principal de la aplicacion
+
+import notFoundHandler from './middlewares/notFound.js';
+import errorHandler from './middlewares/errorHandler.js';
+
 let app = express(); //defino una variable con la ejecucion del modulo de express para crear un servidor
 // VIEWS
 app.set('views', path.join(__dirname, 'views'));//configuro que las vistas generadas en el backend estan en la capeta views
@@ -19,8 +23,14 @@ app.use(express.static(path.join(__dirname, 'public')));//obliga al servidor a g
 app.use(cors()) //obliga al servidor a cruzar los origrenes del front y back
 
 app.use((req, res, next)=>{
-    console.log('Time: ', new Date().getFullYear());
-});
+    console.log('Time: ', new Date().getFullYear()); //Imprimir 2023
+next()});
+
+
 //ENDPOINTS
 app.use('/api', indexRouter);//obliga al servidor a usar las rutas definifas en el enrutador
+
+app.use(notFoundHandler);
+app.use(errorHandler);
+
 export default app;
