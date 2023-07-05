@@ -1,20 +1,19 @@
 
-import app from '../app.js'; 
-import debug from 'debug' ;
-import http from 'http';
-const logger= debug('minga-color-back')
+import app from '../app.js' ;
+import debug from 'debug';
+import http from 'http' ;
+const logger= debug('levantando-new-server')
 
 let port = normalizePort(process.env.PORT || '8000');
 app.set('port', port);
+
 let server = http.createServer(app);
-
 function ready(){
-  console.log('server ready on port'+port);
+  console.log('Your server it´s ready on port'+port);
 }
-
 server.listen(
-  port, 
-  ready 
+  port,
+  ready,
   );
 server.on('error', onError);
 server.on('listening', onListening);
@@ -35,6 +34,10 @@ function normalizePort(val) {
   return false;
 }
 
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
 function onError(error) {
   if (error.syscall !== 'listen') {
     throw error;
@@ -47,7 +50,7 @@ function onError(error) {
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + 'from s elevated privileges');
+      console.error(bind + ' requires elevated privileges');
       process.exit(1);
       break;
     case 'EADDRINUSE':
@@ -58,6 +61,10 @@ function onError(error) {
       throw error;
   }
 }
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
 
 function onListening() {
   let addr = server.address();
