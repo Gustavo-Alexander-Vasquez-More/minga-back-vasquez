@@ -1,7 +1,7 @@
 import { Router } from "express";
 import register from "../controllers/users/register.js";
 import validator from "../middlewares/validator.js";
-import userSignup from "../controllers/users/signup.js";
+import userSignup from "../schemas/users/signup.js";
 import signin from "../controllers/users/signin.js";
 import accountExists from "../middlewares/accountExists.js";
 import passport from "../middlewares/passport.js";
