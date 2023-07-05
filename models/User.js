@@ -5,10 +5,10 @@ let schema =new Schema({
     email: { type:String,required:true },
     password: { type:String,required:true },
     photo: { type:String,required:true },
-    role: { type:Number,required:true },
+    role: { type:Number,required:false },
     online: { type:Boolean },
-    verified: { type:Boolean,required:true },
-    verify_code: { type:String,required:true }   
+    verified: { type:Boolean,required:false },
+    verify_code: { type:String,required:false }   
 },{
     timestamps:true
 })

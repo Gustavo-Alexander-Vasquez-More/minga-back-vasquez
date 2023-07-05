@@ -6,22 +6,32 @@ import logger from'morgan';//modulo para registrar las peticiones que se reasliz
 import { __dirname } from './utils.js';
 import cors from 'cors'//modulo para permitir origenes cruzados(puerto del back con puerto del front)
 import indexRouter from'./routes/index.js';//enrutador principal de la aplicacion
+
+import notFoundHandler from './middlewares/notFound.js';
+import errorHandler from './middlewares/errorHandler.js';
+
 let app = express(); //defino una variable con la ejecucion del modulo de express para crear un servidor
 // VIEWS
 app.set('views', path.join(__dirname, 'views'));//configuro que las vistas generadas en el backend estan en la capeta views
 app.set('view engine', 'ejs');//configuro que las listas se van a definir con el lenguaje de EJS.(moto de plantilla)
 //MIDDLEWARES
 //es un metodo que obliga a mi aplicacion a usar algo(ejecutar una funcion)
+app.use(cors()) //obliga al servidor a cruzar los origrenes del front y back
 app.use(logger('dev')); //obliga al servidor a usar el middleware de registro de peticiones
 app.use(express.json());//obliga al servidor a transformar/manejar formato json(post/put)
 app.use(express.urlencoded({ extended: false }));//obliga al servidor a acceder a consultas complejas(lee query params de una peticion)
 app.use(express.static(path.join(__dirname, 'public')));//obliga al servidor a generar una carpeta de acceso PUBLICO
-app.use(cors()) //obliga al servidor a cruzar los origrenes del front y back
+
 
 app.use((req, res, next)=>{
-    console.log('Time: ', new Date().getFullYear());
-    next();
-});
+    console.log('Time: ', new Date().getFullYear()); //Imprimir 2023
+next()});
+
+
 //ENDPOINTS
 app.use('/api', indexRouter);//obliga al servidor a usar las rutas definifas en el enrutador
+
+app.use(notFoundHandler);
+app.use(errorHandler);
+
 export default app;

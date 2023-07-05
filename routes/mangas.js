@@ -3,6 +3,7 @@ import read  from "../controllers/mangas/read.js"
 import create from "../controllers/mangas/create.js"
 import validator from "../middlewares/validator.js"
 import mangaValidation from "../schemas/Manga/mangaVal.js"
+/*import is_property_of from "../middlewares/is_property_of.js"*/
 
 const manga_router=Router()
 manga_router.get('/', read)
