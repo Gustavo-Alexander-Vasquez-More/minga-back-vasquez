@@ -10,7 +10,7 @@ import exists_order from "../middlewares/exists_order.js";
 
 
 const chapter_router=Router()
-
+//DSdfsdfdasf//
 chapter_router.get('/', passport.authenticate('jwt',{session:false}),  read)
 chapter_router.post('/chapterC',addCoverPhotoMiddleware,validator(validadorChapter),is_property_of, exists_order , create)
 export default chapter_router
