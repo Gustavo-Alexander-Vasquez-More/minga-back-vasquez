@@ -10,7 +10,7 @@ export default async(req,res,next)=> {
         delete one.password
         return res.status(200).json({
             success:true,
-            message:'user signed in!',
+            message:'you have successfully logged in!',
             response: {
                 user:one,
                 token:req.token
