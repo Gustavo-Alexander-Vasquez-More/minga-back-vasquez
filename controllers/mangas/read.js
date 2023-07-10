@@ -1,4 +1,4 @@
-import User from '../../models/User.js'
+import User from '../../models/Manga.js'
 export default async(req, res)=>{
     try {
         let all = await User.find()       //espero la busqueda de todos los autores
@@ -6,7 +6,7 @@ export default async(req, res)=>{
             return res.status(200).json({   //envío al cliente una respuesta con los datos que quiera
                 response:all,
                 success:true,
-                message:'you have requested GET /api/users/',
+                message:'you have requested GET /api/mangas/',
                 mindhub:'the best',
                 date: new Date()
             })
@@ -14,7 +14,7 @@ export default async(req, res)=>{
             return res.status(404).json({   //envio al cliente OTRA respuesta con los datos que quiera
                 response:null,
                 success:false,
-                message:'not found users',
+                message:'not found mangas',
                 mindhub:'the best',
                 date: new Date()
             })

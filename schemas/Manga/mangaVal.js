@@ -2,7 +2,6 @@ import joi from 'joi';
 
 const  mangaValidation = joi.object({
     author_id:joi.string()
-        .required()
         .min(1)
         .message({
             'any.required':'AUTHOR_ID_REQUIRED',
@@ -19,7 +18,6 @@ const  mangaValidation = joi.object({
             'string.max':'TITLE_TOO_LARGE',
         }),
     cover_photo:joi.string()
-    .required()
     .uri()
     .message({
         'any.required':'PHOTO_REQUIRED',
