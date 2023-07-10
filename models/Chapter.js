@@ -8,7 +8,7 @@ ref:"mangas",
 required:true},
 title:{type:String, required:true},
 cover_photo:{type:String, required:true},
-pages:{type:Array, required:true},
+pages:[{type:Array, required:true}],
 order:{type:Number, required:true},
 },{
     timestamps:true

@@ -23,9 +23,10 @@ const  validadorChapter = Joi.object({
 
     }),
     pages:Joi.array().items(Joi.string().uri())
-        .required()
+    .required()
         .messages({
-            "string.pages":"URL is not valid",
+            'any.required': "URL is required",
+            "string.uri":"URL is not valid",
             "string.empty":"URL is required",
             
         }),
