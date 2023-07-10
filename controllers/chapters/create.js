@@ -5,14 +5,9 @@ export default async (req, res)=>{
         return res.status(201).json({
             response:chapter,
             success:true,
-            message:'Manga created',
+            message:'Chapter created',
         })
     } catch (error) {
-        console.log(error);
-        return res.status(500).json({
-            response:null,
-            success:false,
-            message:error.message
-        })
+       next(error)
     }
 }
