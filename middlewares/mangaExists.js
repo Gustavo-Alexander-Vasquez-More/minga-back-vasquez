@@ -9,7 +9,7 @@ export default async(req, res, next) => {
         if (one) {
             return res.status(400).json({
                 success: false,
-                message: 'Manga already exists'
+                message: 'Manga exists'
             })
         }
         return next()
