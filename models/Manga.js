@@ -8,7 +8,7 @@ let schema = new Schema({
     title:{type:String, require:true},
     cover_photo:{type:String, required: true},
     description:{type:String, required:true},
-    Category_id:{type:Types.ObjectId,
+    category_id:{type:Types.ObjectId,
         ref: 'categories',
         required:true,},
 },{

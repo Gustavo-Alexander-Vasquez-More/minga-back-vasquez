@@ -5,13 +5,10 @@ import validator from "../middlewares/validator.js"
 import mangaValidation from "../schemas/Manga/mangaVal.js"
 import mangaExists from "../middlewares/mangaExists.js"
 import passport from "../middlewares/passport.js"
-
-/*import is_property_of from "../middlewares/is_property_of.js"*/
-
+import readOne from "../controllers/mangas/read_one.js"
 const manga_router=Router()
 manga_router.get('/', read)
-
+manga_router.get('/:id' , readOne, /*passport.authenticate('jwt',{ session:false })*/)
 manga_router.post('/mangaC',validator(mangaValidation), passport.authenticate('jwt',{ session:false }), mangaExists, create);
-//manga_router.put()
-//manga_router.delete()
+
 export default manga_router

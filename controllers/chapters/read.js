@@ -1,5 +1,4 @@
-//por ahora COMO NO VOY A DEVOLVER LOS CAPITULOS
-//voy a definir un controlador SINCRONO
+
 import Chapter from "../../models/Chapter.js"
 export default async(req, res)=>{
     try {
@@ -30,5 +29,3 @@ export default async(req, res)=>{
         })
     }
 }
-//definir los controladores READ de mangas, chapters y users como este controller
-//definir para la tarea minga-08 el controlador READ de categories igual al de authors
