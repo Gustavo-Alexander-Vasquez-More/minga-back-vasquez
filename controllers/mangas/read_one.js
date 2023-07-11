@@ -1,8 +1,18 @@
 import Manga from "../../models/Manga.js";
 
+
 const readOne = async (req, res) => {
   try {
-    const manga = await Manga.findById(req.params._id).select("title cover_photo description");
+    const manga = await Manga.findById(req.params.id).select("title cover_photo description category_id")
+    .populate({
+        path: 'category_id',
+  select: 'name -_id',
+    })
+    .populate({ path: 'author_id',
+    select: 'name last_name photo -_id',
+    
+})
+    
 
     return res.status(200).json({
       success: true,

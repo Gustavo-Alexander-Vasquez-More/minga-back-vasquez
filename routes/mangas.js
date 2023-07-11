@@ -8,7 +8,7 @@ import passport from "../middlewares/passport.js"
 import readOne from "../controllers/mangas/read_one.js"
 const manga_router=Router()
 manga_router.get('/', read)
-manga_router.get('/' , readOne, passport.authenticate('jwt',{ session:false }))
+manga_router.get('/:id' , readOne, /*passport.authenticate('jwt',{ session:false })*/)
 manga_router.post('/mangaC',validator(mangaValidation), passport.authenticate('jwt',{ session:false }), mangaExists, create);
 
 export default manga_router
