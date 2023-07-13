@@ -1,30 +1,52 @@
-import Manga from '../../models/Manga.js'
-export default async(req, res)=>{
-    try {
-        let all = await Manga.find()       //espero la busqueda de todos los autores
-        if (all) {                          //que hago si encuentro autores?
-            return res.status(200).json({   //envío al cliente una respuesta con los datos que quiera
-                response:all,
-                success:true,
-                message:'you have requested GET /api/mangas/',
-                mindhub:'the best',
-                date: new Date()
-            })
-        } else {                            //que hago si NO encuentro autores
-            return res.status(404).json({   //envio al cliente OTRA respuesta con los datos que quiera
-                response:null,
-                success:false,
-                message:'not found mangas',
-                mindhub:'the best',
-                date: new Date()
-            })
-        }
-    } catch (error) {                       //que hago si no puedo INTENTAR buscar algo y salta el catch
-        console.log(error)                  //consologueo el error
-        return res.status(500).json({       //envío al cliente OTRA respuesta con los datos que quiera
-            response:null,
-            success:false,
-            message:error.message
-        })
+import Manga from '../../models/Manga.js';
+
+async function read(req, res, next) {
+  let { category, title, page } = req.query;
+  let perPage = 4;
+  let queries = {};
+  let sort = { title: 1 }; // Orden ascendente por título
+
+  if (title) {
+    queries.title = { $regex: title.trim(), $options: 'i' };
+  }
+
+  if (category) {
+    queries.category_id = { $in: category.trim().split(',') }; // Ajusta el filtro de categoría según la propiedad del modelo
+  }
+
+  try {
+    let totalMangas = await Manga.countDocuments(queries);
+    let totalPages = Math.ceil(totalMangas / perPage);
+
+    let currentPage = parseInt(page, 10) || 1;
+    currentPage = Math.max(1, Math.min(currentPage, totalPages));
+
+    let skip = (currentPage - 1) * perPage;
+    let mangas = await Manga.find(queries)
+      .select('-createdAt -updatedAt') // Proteger las propiedades createdAt y updatedAt
+      .sort(sort)
+      .skip(skip)
+      .limit(perPage);
+
+    const prevPage = currentPage > 1 ? currentPage - 1 : null;
+    const nextPage = currentPage < totalPages ? currentPage + 1 : null;
+
+    const pagination = {};
+    if (prevPage !== null) {
+      pagination.prev = prevPage;
     }
+    if (nextPage !== null) {
+      pagination.next = nextPage;
+    }
+
+    return res.status(200).json({
+      mangas,
+      success: true,
+      pagination,
+    });
+  } catch (error) {
+    next(error);
+  }
 }
+
+export default read;
