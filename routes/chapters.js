@@ -7,10 +7,11 @@ import validator from "../middlewares/validator.js";
 import is_property_of from "../middlewares/is_property_of.js";
 import passport from "../middlewares/passport.js";
 import exists_order from "../middlewares/exists_order.js";
+import new_read from "../controllers/chapters/new_read.js"
 
 
 const chapter_router=Router()
 //DSdfsdfdasf//
-chapter_router.get('/', passport.authenticate('jwt',{session:false}),  read)
+chapter_router.get('/', passport.authenticate('jwt',{session:false}), new_read)
 chapter_router.post('/chapterC',addCoverPhotoMiddleware,validator(validadorChapter),is_property_of,exists_order , create)
 export default chapter_router
