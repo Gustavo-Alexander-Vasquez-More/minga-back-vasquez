@@ -1,5 +1,5 @@
 import Manga from '../../models/Manga.js';
-
+//Sprint-->3
 async function read(req, res, next) {
   let { category, title, page } = req.query;
   let perPage = 4;
@@ -21,7 +21,7 @@ async function read(req, res, next) {
     let currentPage = parseInt(page, 10) || 1;
     currentPage = Math.max(1, Math.min(currentPage, totalPages));
 
-    let skip = (currentPage - 1) * perPage;
+    const skip = (currentPage - 1) * perPage;
     let mangas = await Manga.find(queries)
       .select('-createdAt -updatedAt') // Proteger las propiedades createdAt y updatedAt
       .sort(sort)
