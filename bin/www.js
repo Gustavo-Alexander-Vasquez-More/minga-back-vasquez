@@ -5,6 +5,7 @@ import http from 'http';
 const logger= debug('minga-color-back')
 
 let port = normalizePort(process.env.PORT || '8000');
+
 app.set('port', port);
 let server = http.createServer(app);
 
