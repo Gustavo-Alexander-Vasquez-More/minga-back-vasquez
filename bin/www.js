@@ -2,8 +2,10 @@
 import app from '../app.js' ;
 import debug from 'debug';
 import http from 'http' ;
+import bodyParser from 'body-parser';
 const logger= debug('levantando-new-server')
-
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 let port = normalizePort(process.env.PORT || '8000');
 app.set('port', port);
 

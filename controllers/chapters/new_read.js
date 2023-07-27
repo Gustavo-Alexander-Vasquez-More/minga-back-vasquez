@@ -26,11 +26,11 @@ return res.status(200).json({
     success:true,
     chapters:chapters,
     prev:prevPage,
-    next:nextPage
+    next:nextPage,
+    totalPages:totalPages,
 })
     } catch (error) {
       next(error)  
     }
 }
 export default read
-/*SDsdasdsffsf*/

@@ -1,21 +1,21 @@
 import Joi from 'joi'
-const  validadorChapter = Joi.object({
+const   validadorEditChapter = Joi.object({
     manga_id:Joi.string()
-        .required()
+    .optional()
         .messages({
             "objectId.empty":"Id required",
         }),
     title: Joi.string()
-        .required()
+    .optional()
         .min(1)
-        .max(30)
+        .max(35)
         .messages({
             "string.min":"min is not valid",
             "string.max":"max is not valid",
             "string.empty":"title is required",
         }),
     cover_photo:Joi.string()
-    .required()
+    .optional()
     .uri()
     .messages({
         "string.empty":"URL is required",
@@ -23,7 +23,7 @@ const  validadorChapter = Joi.object({
 
     }),
     pages:Joi.array().items(Joi.string().uri())
-    .required()
+    .optional()
         .messages({
             'any.required': "URL is required",
             "string.uri":"URL is not valid",
@@ -31,11 +31,11 @@ const  validadorChapter = Joi.object({
             
         }),
     order:Joi.number()
-        .required()
+    .optional()
         .messages({
             "number.order":"order is not valid",
             "number.empty":"Order is required",
         })
 })
 
-export default validadorChapter;
+export default validadorEditChapter;

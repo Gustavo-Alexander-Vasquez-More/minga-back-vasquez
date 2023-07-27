@@ -34,11 +34,10 @@ cover_photo:joi.string()
         }),
     order:joi.number()
         .required()
-        .min(2)
         .messages({
             "number.order":"order is not valid",
             "number.empty":"Order is required",
-            "number.min":"min is not valid"
+           
         })
 })
 
