@@ -6,9 +6,11 @@ import mangaValidation from "../schemas/Manga/mangaVal.js"
 import mangaExists from "../middlewares/mangaExists.js"
 import passport from "../middlewares/passport.js"
 import readOne from "../controllers/mangas/read_one.js"
+import multer from "multer";
+const upload = multer({ dest:'uploads/'});
 const manga_router=Router()
 manga_router.get('/', read)
 manga_router.get('/:id', passport.authenticate('jwt',{ session:false }) , readOne)
-manga_router.post('/',passport.authenticate('jwt',{ session:false }) ,validator(mangaValidation), mangaExists, create);
+manga_router.post('/mangasC',upload.single('cover_photo'),create);
 
 export default manga_router
