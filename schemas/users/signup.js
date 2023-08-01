@@ -8,12 +8,12 @@ const userSignup = joi.object({
         }),
     password: joi.string()
         .required()
-        .min(8)
+        .min(5)
         .max(35)
         .alphanum(),
-    photo: joi.string()
+    photo: joi.any()
     .required()
-    .uri()
+    
 })
 
 export default userSignup;

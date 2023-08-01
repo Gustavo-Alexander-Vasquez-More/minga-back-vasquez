@@ -7,8 +7,8 @@ const  validadorChapter = Joi.object({
         }),
     title: Joi.string()
         .required()
-        .min(4)
-        .max(35)
+        .min(1)
+        .max(30)
         .messages({
             "string.min":"min is not valid",
             "string.max":"max is not valid",
